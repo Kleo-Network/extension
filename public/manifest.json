@@ -1,0 +1,53 @@
+{
+  "name": "Brownie Points",
+  "author": "github.com/vaibhavgeek",
+  "manifest_version": 2,
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "128": "icons/icon128.png"
+  },
+  "storage": {
+    "managed_schema": "schema.json"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "chromeos": "Alt+Shift+Z",
+        "linux": "Alt+Shift+Z",
+        "mac": "Alt+Shift+Z",
+        "windows": "Alt+Shift+Z"
+      }
+    }
+  },
+  "permissions": [
+    "storage",
+    "notifications",
+    "activeTab",
+    "alarms",
+    "http://127.0.0.1/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": ["inpage.js", "phishing.html"],
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    },
+    "default_title": "Brownie Points",
+    "default_popup": "index.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "version": "1.3.4",
+  "short_name": "Brownie Points",
+  "description": "Brownie Points browser Extension"
+}
