@@ -23,7 +23,7 @@ export class TabStream {
   public listen(cb: (payload: ReqBody) => void) {
     document.addEventListener(this.#eventName, (event) => {
       const detail = event["detail"];
-
+      console.log("detail", detail);
       if (detail) {
         cb(JSON.parse(detail));
       }
@@ -37,7 +37,7 @@ export class TabStream {
    */
   public send(data: ReqBody, to: string) {
     data.from = this.#eventName;
-
+    console.log("to",to);
     if (Object.values(MTypeTabContent).includes(to)) {
       this.#dispatch(JSON.stringify(data), to);
     }

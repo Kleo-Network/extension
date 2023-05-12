@@ -17,7 +17,7 @@ export class ContentTabStream {
   constructor() {
     this.#stream = new TabStream(MTypeTabContent.CONTENT);
     this.#stream.listen((msg) => this.#listener(msg));
-    this.onSyncAll();
+    console.log("listener is working?");
   }
 
   async #listener(msg: ReqBody) {
@@ -26,25 +26,9 @@ export class ContentTabStream {
     msg.domain = window.document.domain;
 
     switch (msg.type) {
-      case MTypeTab.KLEO_CONNECTIONS:
-        await new Message(msg).send();
-        break;
-      case MTypeTab.GET_WALLET_DATA:
-        await this.onSyncAll();
-        break;
-      case MTypeTab.ADDRESS_CHANGED:
-        await new Message(msg).send();
-        break;
+     
       case MTypeTab.CONNECT_APP:
-        await new Message(msg).send();
-        break;
-      case MTypeTab.DISCONNECT_APP:
-        await new Message(msg).send();
-        break;
-      case MTypeTab.CALL_TO_SIGN_TX:
-        await new Message(msg).send();
-        break;
-      case MTypeTab.SIGN_MESSAGE:
+        console.log("send connect APP?");
         await new Message(msg).send();
         break;
       default:
@@ -52,27 +36,6 @@ export class ContentTabStream {
     }
   }
 
-  async onSyncAll() {
-    // Get the some data { address, net, nodeURL }.
-    const recipient = MTypeTabContent.INJECTED;
-
-    try {
-      const data = await Message.signal(MTypeTab.GET_WALLET_DATA).send();
-      const wallet = warpMessage(data);
-
-
-      if (wallet) {
-        new ContentMessage({
-          type: MTypeTab.GET_WALLET_DATA,
-          payload: wallet,
-        }).send(this.#stream, recipient);
-      }
-
-     
-    } catch (err) {
-      console.error(err);
-    }
-  }
 
   
 }

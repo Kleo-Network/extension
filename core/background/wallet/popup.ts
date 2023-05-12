@@ -20,12 +20,6 @@ export class KleoPopup {
       this.#unsubscribe();
     }
 
-    new TabsMessage({
-      type: MTypeTab.LOCK_STAUS,
-      payload: {
-        isEnable: this.#core.guard.isEnable,
-      },
-    }).send();
   }
 
   public async logout(sendResponse: StreamResponse) {

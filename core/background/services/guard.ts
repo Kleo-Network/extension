@@ -4,7 +4,6 @@ import { Aes } from "lib/crypto/aes";
 import { BrowserStorage, buildObject } from "lib/storage";
 import { Fields } from "config/fields";
 import { Common } from "config/common";
-import { isPrivateKey } from "lib/utils/address";
 
 export class AuthGuard {
   // hash of the password.
@@ -116,11 +115,7 @@ export class AuthGuard {
     this.#encryptImported = encryptImported;
   }
 
-  public encryptPrivateKey(privKey: string) {
-    isPrivateKey(privKey);
-    const hash = this.#hash.get(this);
-    return Aes.encrypt(String(privKey), hash);
-  }
+  
 
   public decryptPrivateKey(content: string) {
     const hash = this.#hash.get(this);

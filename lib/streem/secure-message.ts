@@ -23,6 +23,7 @@ export class ContentMessage {
    * Method for send message.
    */
   public send(stream: TabStream, recipient: string) {
+    console.log("Send", stream);
     const seralized = JSON.stringify(this._body);
     const deserialized = JSON.parse(seralized);
 

@@ -4,13 +4,18 @@ import { ContentTabStream } from "./tab-stream";
 import { Runtime } from "lib/runtime";
 
 export function startStream() {
+
+ 
   const tabStream = new ContentTabStream();
 
   Runtime.runtime.onMessage.addListener((req, sender, sendResponse) => {
+    console.log("listen here", req);
     if (sender.id !== Runtime.runtime.id) {
+      console.log("null", sender.id);
       return null;
     }
-
+    
+    
     const msg = new ContentMessage(req);
 
     if (!msg.type || !msg.payload) {

@@ -3,11 +3,6 @@
   import { link, location, push } from 'svelte-spa-router';
   import { createEventDispatcher } from 'svelte';
 
-  import { logoutWallet } from 'popup/backend/popup';
-
-  import { linksExpand, openTab } from 'popup/mixins/link';
-  import { trim } from 'popup/filters/trim';
-
   import Refresh from './icons/Refresh.svelte';
   import ExpandIcon from './icons/Expand.svelte';
   import ViewIcon from './icons/View.svelte';
@@ -27,10 +22,8 @@
   };
   const viewOnViewBlock = () => {
     const url = "https://www.google.com"
-    openTab(url);
   };
   const handleOnLock = async () => {
-    await logoutWallet();
     push('/lock');
   };
 </script>
@@ -48,7 +41,7 @@
     {#if expand}
       <span
         class="expand"
-        on:click={() => linksExpand($location)}
+        on:click={() => console.log($location)}
       >
         <ExpandIcon className="icon" />
       </span>

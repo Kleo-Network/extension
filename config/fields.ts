@@ -7,7 +7,7 @@ export enum Fields {
   CONNECT_DAPP = "connect",
  
   THEME = "theme",
- 
+  TRANSACTIONS = "transactions",
   POPUP_ENABLED = "popup-enabled",
 
 }

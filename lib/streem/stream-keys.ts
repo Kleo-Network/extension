@@ -1,5 +1,5 @@
 // This string need that sould did't have problem with conflicts.
-const app = "zil-pay";
+const app = "kleo";
 
 export const MTypeTabContent = {
   CONTENT: `@/${app}/content-script`,

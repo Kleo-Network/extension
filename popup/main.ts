@@ -20,13 +20,13 @@ getState()
 			events.removeListener();
 		}
 
-		// events.addListener(async (event: object) => {
-		// 	for (const key in event) {
-		// 		if (key.includes(Fields.TRANSACTIONS)) {
-		// 			await getState();
-		// 		}
-		// 	}
-		// });
+		events.addListener(async (event: object) => {
+			for (const key in event) {
+				if (key.includes(Fields.TRANSACTIONS)) {
+					await getState();
+				}
+			}
+		});
 	})
 	.catch(console.error);
 

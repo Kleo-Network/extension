@@ -46,12 +46,12 @@ export class Message {
   public send(): Promise<SendResponseParams> {
     return new Promise((resolve) => {
       try {
-        //console.log("runtime", Runtime.runtime);
-
+        console.log("runtime", this._body);
+        console.log("resolve", resolve);
         Runtime.runtime.sendMessage(this._body, resolve);
       } catch (err) {
         console.log("error", err);
-        //console.error(this, err);
+        console.error(this, err);
         //window.location.reload();
       }
     });
