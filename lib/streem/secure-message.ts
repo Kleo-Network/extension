@@ -26,7 +26,7 @@ export class ContentMessage {
     console.log("Send", stream);
     const seralized = JSON.stringify(this._body);
     const deserialized = JSON.parse(seralized);
-
+    
     stream.send(deserialized, recipient);
   }
 }

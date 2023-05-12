@@ -3,7 +3,10 @@ import App from "./App.svelte";
 import { Runtime } from "lib/runtime";
 import { Fields } from "config/fields";
 
-let app = {};
+//let app= {};
+let app = new App({
+	target: document.body,
+});
 
 getState()
 	.then(() => {

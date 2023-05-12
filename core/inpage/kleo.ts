@@ -16,8 +16,8 @@ export class Kleo {
     this.wallet = new Wallet(stream, subject);
 
     this.kleo = () => {
-      //console.log("stream", stream);
-      //console.log("subject", subject);
+      console.log("stream", stream);
+      console.log("subject", subject);
       const uuid = uuidv4();
       const type = MTypeTab.CONNECT_APP;
       const recipient = MTypeTabContent.CONTENT;
@@ -30,11 +30,12 @@ export class Kleo {
         icon,
         uuid,
       };
-      //console.log("subject", subject);
-      new ContentMessage({
+      console.log("subject", subject);
+      const msg = new ContentMessage({
         type,
         payload,
       }).send(stream, recipient);
+      console.log("msg", msg);
 
       return new Promise((resolve) => {
         const obs = subject.on((msg) => {

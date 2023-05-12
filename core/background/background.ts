@@ -17,6 +17,7 @@ export function startBackground(core: KleoBackground) {
       case MTypeTab.CONNECT_APP:
         console.log("msg", msg);
         console.log("sendRsp", sendResponse);
+        core.connect.openPopupConnect(msg.payload, sendResponse);
         //core.apps.addConfirm(msg.payload, sendResponse);
         return true;
   
