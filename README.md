@@ -1,6 +1,6 @@
 # Brownie Points
 
-[![Chrome](https://img.shields.io/chrome-web-store/v/klnaejjgbibmhlephnhpmaofohgkpgkd)](https://chrome.google.com/webstore/detail/zilpay/klnaejjgbibmhlephnhpmaofohgkpgkd?utm_source=chrome-ntp-icon)
+[![Chrome](https://img.shields.io/chrome-web-store/v/nkbihfbeogaeaoehlefnkodbefgpgknn)](Coming Soon)
 
 Brownie Points allows you to earn brownie points by visiting web3 based marketplaces. It also allows websites to understand your user behaviour better while you earn these brownie cookies. We use zero knowledge proofs to share this information with the user.
 
