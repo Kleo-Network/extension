@@ -1,8 +1,8 @@
 {
-  "name": "kleo",
+  "name": "extension",
   "version": "1.3.4",
-  "description": "Brownie Extension browser Extension",
-  "shortName": "Brownie Points",
+  "description": "Extension",
+  "shortName": "extension",
   "private": false,
   "scripts": {
     "build": "rollup -c",
@@ -44,7 +44,6 @@
     "@ledgerhq/hw-transport-webhid": "^6.27.2",
     "@metamask/jazzicon": "^2.0.0",
     "@zilliqa-js/proto": "^3.3.4",
-    "axios": "^1.3.4",
     "big.js": "^6.2.1",
     "bip39": "^3.0.4",
     "buffer": "^6.0.3",
@@ -60,12 +59,13 @@
   "keywords": [
     "blockchain",
     "zilliqa",
-    "Kleo",
+    "ZilPay",
     "dapp",
     "metamask"
   ],
   "license": "MIT",
-  "author": "Vaibhav Maheshwari <vaibhav.dkm@gmail.com>",
+  "homepage": "https://zilpay.io/",
+  "author": "Rinat Hasanshin <lich666black@gmail.com>",
   "engines": {
     "node": ">=10",
     "npm": "^6.14.4"

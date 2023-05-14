@@ -13,14 +13,29 @@ export class KleoConnect {
 
     public async openPopupConnect(app: AppConnect, sendResponse: StreamResponse){
         console.log("open poppup");
-        await new TabsMessage({
+        const isConnected = this.#core.connect.isConnected(app.domain);
+        console.log("is connected?", isConnected);
+        
+        if(isConnected) {
+            await new TabsMessage({
             type: MTypeTab.RESPONSE_TO_DAPP,
             payload:{
                 uuid: "uuid", 
                 connect: "connect"
             }
         }).send();
-        console.log("this", this.#core.prompt);
+        }
+        else {
+        await this.#core.connect.addConfirm(app);
+        sendResponse({
+            resolve: {
+              app
+            }
+          });
         await this.#core.prompt.open();
+        }
+        console.log("this", this.#core.prompt);
+       
+       
     }
 }

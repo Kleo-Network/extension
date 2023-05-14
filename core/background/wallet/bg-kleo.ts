@@ -10,7 +10,6 @@ export class KleoBackground {
   public readonly popup = new KleoPopup(this.#core);
   public readonly synchronizer = new KleoSynchronizer(this.#core);
   public readonly connect = new KleoConnect(this.#core);
-
   public async sync() {
     Runtime.runtime.onInstalled.addListener(async (event) => {
       await this.synchronizer.sync();
@@ -25,4 +24,5 @@ export class KleoBackground {
       Runtime.runtime.onInstalled.removeListener(() => null);
     //}
   }
+  
 }

@@ -11,6 +11,7 @@ export class KleoSynchronizer {
     console.log("start-sync");
     await this.#core.guard.sync();
     await this.#core.prompt.sync();
+    await this.#core.connect.sync();
     console.log("end-sync");
   }
 }

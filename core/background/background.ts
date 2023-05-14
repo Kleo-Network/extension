@@ -11,9 +11,6 @@ export function startBackground(core: KleoBackground) {
       return true;
     }
     switch (msg.type) {
-      case MTypePopup.GET_WALLET_STATE:
-        console.log("DAS");
-        return true;
       case MTypeTab.CONNECT_APP:
         console.log("msg", msg);
         console.log("sendRsp", sendResponse);
@@ -23,6 +20,7 @@ export function startBackground(core: KleoBackground) {
   
       case MTypePopup.USER_RESPONSE_DAPP:
         console.log("this is being called sir?", msg);
+        core.connect.confirm(msg.payload.confirmed, sendResponse);
         //core.apps.userResponse(msg.payload, sendResponse);
         return true;
       default:

@@ -29,7 +29,7 @@
 		"domain": "nftmarketplace.com",
 		"url": "https://testnet-zkevm.polygonscan.com/tx/0xcdc3bcf14ad5d64aeda361de7f7cb402d81c239589b3e043dec05a914dfbcd82"
 	}];
-
+	//push("/connect");
 
 </script>
 
