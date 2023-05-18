@@ -63,7 +63,7 @@ export class WebsiteController {
   public async sync() {
     const jsonData = await BrowserStorage.get(Fields.CONNECT_LIST);
     const confirm = await BrowserStorage.get(Fields.CONNECT_DAPP);
-
+    console.log("browser storage connect dapp", confirm);
     try {
       if (confirm) {
         this.#confirm = JSON.parse(String(confirm));

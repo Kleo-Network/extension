@@ -2,6 +2,7 @@ import { Message } from "lib/streem/message";
 import { MTypePopup } from "lib/streem/stream-keys";
 import { warpMessage } from "lib/utils/warp-message";
 import { updateState } from "./store-update";
+import type { WalletState } from "types/account";
 
 export async function userResponseConnection(confirmed: boolean) {
   const data = await new Message({
@@ -12,6 +13,14 @@ export async function userResponseConnection(confirmed: boolean) {
   }).send();
   console.log("new data", data);
   const state = warpMessage(data);
+  updateState(state);
+  return state;
+}
+export async function getState() {
+  const data = await Message.signal(
+    MTypePopup.GET_WALLET_STATE
+  ).send();
+  const state = warpMessage(data) as WalletState;
   updateState(state);
   return state;
 }

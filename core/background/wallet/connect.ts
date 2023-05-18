@@ -10,11 +10,12 @@ export class KleoConnect {
     constructor(core: KleoCore) {
         this.#core = core;
     }
-
+    public async confirm(){
+        console.log("confirm has been called sir");
+    }
     public async openPopupConnect(app: AppConnect, sendResponse: StreamResponse){
-        console.log("open poppup");
         const isConnected = this.#core.connect.isConnected(app.domain);
-        console.log("is connected?", isConnected);
+        console.log("is the domain connected previously?", isConnected);
         
         if(isConnected) {
             await new TabsMessage({

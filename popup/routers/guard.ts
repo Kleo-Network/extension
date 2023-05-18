@@ -2,14 +2,15 @@ import { get } from "svelte/store";
 import { push } from "svelte-spa-router";
 
  import guardStore from "popup/store/guard";
-import connectStore from "app/store/connect";
+import websiteStore from "app/store/connect";
 
 
 export const routerGuard = (e: { location: string }) => {
    const guard = get(guardStore);
-   const connect = get(connectStore);
-   console.log("this is router," ,connect.confirmApp);
-   if(connect.confirmApp){
+   const website = get(websiteStore);
+   console.log("this is website store," ,website);
+   console.log('this is guard store', guard);
+   if(website.confirmApp){
      push("/connect")
    }
    else

@@ -10,18 +10,20 @@ export function startBackground(core: KleoBackground) {
       sendResponse(null);
       return true;
     }
-    switch (msg.type) {
+    switch (msg.type) { 
       case MTypeTab.CONNECT_APP:
         console.log("msg", msg);
         console.log("sendRsp", sendResponse);
         core.connect.openPopupConnect(msg.payload, sendResponse);
-        //core.apps.addConfirm(msg.payload, sendResponse);
         return true;
   
       case MTypePopup.USER_RESPONSE_DAPP:
-        console.log("this is being called sir?", msg);
-        core.connect.confirm(msg.payload.confirmed, sendResponse);
-        //core.apps.userResponse(msg.payload, sendResponse);
+        console.log("msg payload called", msg);
+        console.log("send response payload on click", sendResponse)
+        core.connect.confirm();
+        return true;
+      case MTypePopup.GET_WALLET_STATE:
+        core.popup.initPopup(sendResponse);
         return true;
       default:
         sendResponse(null);
