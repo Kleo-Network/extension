@@ -45,7 +45,7 @@
 	];
 	const hanldeOnConfirm = async () => {
 		await userResponseConnection(true);
-
+		
 		if (url.searchParams.has("type")) {
 			await closePopup();
 		}

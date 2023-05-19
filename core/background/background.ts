@@ -18,9 +18,9 @@ export function startBackground(core: KleoBackground) {
         return true;
   
       case MTypePopup.USER_RESPONSE_DAPP:
-        console.log("msg payload called", msg);
-        console.log("send response payload on click", sendResponse)
-        core.connect.confirm();
+        console.log("user response on popup payload", msg);
+        console.log("response of user response dapp payload", sendResponse)
+        core.connect.confirm(msg.payload, sendResponse);
         return true;
       case MTypePopup.GET_WALLET_STATE:
         core.popup.initPopup(sendResponse);

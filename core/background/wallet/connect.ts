@@ -10,8 +10,12 @@ export class KleoConnect {
     constructor(core: KleoCore) {
         this.#core = core;
     }
-    public async confirm(){
+    public async confirm(app: AppConnect, sendResponse: StreamResponse){
         console.log("confirm has been called sir");
+        await this.#core.connect.add(app);
+        sendResponse({
+          resolve: this.#core.state
+        });
     }
     public async openPopupConnect(app: AppConnect, sendResponse: StreamResponse){
         const isConnected = this.#core.connect.isConnected(app.domain);
