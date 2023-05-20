@@ -46,6 +46,6 @@ export class Kleo {
     //       return resolve(isConnect);
     //     });
     //   });
-    };
+    // };
   }
 }
