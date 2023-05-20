@@ -13,7 +13,7 @@ export class Wallet {
   #isConnect = false;
   #isEnable = false;
   #http: string | null;
-  #defaultAccount: InpageWallet | null = null;
+  #defaultAccount: {} | null = null;
 
   public txns = new Set<string>();
 
@@ -60,14 +60,9 @@ export class Wallet {
 
     return new Promise((resolve) => {
       const obs = this.#subject.on((msg) => {
-        if (msg.type !== MTypeTab.RESPONSE_TO_DAPP) return;
-        if (msg.payload.uuid !== uuid) return;
-
-        this.#isConnect = Boolean(msg.payload.account);
-        this.#defaultAccount = (msg.payload.account as InpageWallet) || null;
-
+        this.#defaultAccount = msg.payload;
         obs();
-        return resolve(this.#isConnect);
+        return resolve(true);
       });
     });
   }

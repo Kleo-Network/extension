@@ -12,6 +12,12 @@ export class KleoConnect {
     }
     public async confirm(app: AppConnect, sendResponse: StreamResponse){
         console.log("confirm has been called sir");
+        await new TabsMessage({
+          type: MTypeTab.RESPONSE_TO_DAPP,
+          payload: {
+            "formdata": "form"
+          }
+        }).send();
         await this.#core.connect.add(app);
         sendResponse({
           resolve: this.#core.state

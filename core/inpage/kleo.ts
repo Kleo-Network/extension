@@ -15,39 +15,37 @@ export class Kleo {
     
     this.wallet = new Wallet(stream, subject);
 
-    this.kleo = () => {
-      console.log("stream", stream);
-      console.log("subject", subject);
-      const uuid = uuidv4();
-      const type = MTypeTab.CONNECT_APP;
-      const recipient = MTypeTabContent.CONTENT;
-      const title = window.document.title;
-      const domain = window.document.domain;
-      const icon = getFavicon();
-      const payload = {
-        title,
-        domain,
-        icon,
-        uuid,
-      };
-      console.log("subject", subject);
-      const msg = new ContentMessage({
-        type,
-        payload,
-      }).send(stream, recipient);
-      console.log("msg", msg);
+    // Used for testing purposes only. 
 
-      return new Promise((resolve) => {
-        const obs = subject.on((msg) => {
-          if (msg.type !== MTypeTab.RESPONSE_TO_DAPP) return;
-          if (msg.payload.uuid !== uuid) return;
+    // this.kleo = () => {
+    //   const uuid = uuidv4();
+    //   const type = MTypeTab.CONNECT_APP;
+    //   const recipient = MTypeTabContent.CONTENT;
+    //   const title = window.document.title;
+    //   const domain = window.document.domain;
+    //   const icon = getFavicon();
+    //   const payload = {
+    //     title,
+    //     domain,
+    //     icon,
+    //     uuid,
+    //   };
+    //   const msg = new ContentMessage({
+    //     type,
+    //     payload,
+    //   }).send(stream, recipient);
 
-          var isConnect = Boolean(msg.payload.account);
+    //   return new Promise((resolve) => {
+    //     const obs = subject.on((msg) => {
+    //       if (msg.type !== MTypeTab.RESPONSE_TO_DAPP) return;
+    //       if (msg.payload.uuid !== uuid) return;
 
-          obs();
-          return resolve(isConnect);
-        });
-      });
+    //       var isConnect = Boolean(msg.payload.account);
+          
+    //       obs();
+    //       return resolve(isConnect);
+    //     });
+    //   });
     };
   }
 }
