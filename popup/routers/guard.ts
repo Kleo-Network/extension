@@ -1,23 +1,19 @@
 import { get } from "svelte/store";
 import { push } from "svelte-spa-router";
 
- import guardStore from "popup/store/guard";
+import guardStore from "popup/store/guard";
 import websiteStore from "app/store/connect";
 
-
 export const routerGuard = (e: { location: string }) => {
-   const guard = get(guardStore);
-   const website = get(websiteStore);
-   console.log("this is website store," ,website);
-   console.log('this is guard store', guard);
-   if(website.confirmApp){
-     push("/connect")
-   }
-   else
-   {
+  const guard = get(guardStore);
+  const website = get(websiteStore);
+
+  if (website.confirmApp) {
+    push("/connect");
+  } else {
     push("/");
-   }
-   //push("/connect");
+  }
+  //push("/connect");
   // if (!guard.isReady) {
   //   push("/start");
   // }
@@ -25,7 +21,6 @@ export const routerGuard = (e: { location: string }) => {
   // if (guard.isReady && !guard.isEnable) {
   //   push("/lock");
   // }
-  
-  return true;
 
+  return true;
 };

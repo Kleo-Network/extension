@@ -1,43 +1,31 @@
 <script lang="ts">
-  import { location, link } from 'svelte-spa-router';
+  import { location, link, push } from "svelte-spa-router";
 
-  import CollectIcon from './CollectIcon.svelte';
-  import GearIcon from './GearIcon.svelte';
-  import HomeIcon from './HomeIcon.svelte';
-  import TimerIcon from './TimerIcon.svelte';
+  import CollectIcon from "./CollectIcon.svelte";
+  import GearIcon from "./GearIcon.svelte";
+  import HomeIcon from "./HomeIcon.svelte";
+  import TimerIcon from "./TimerIcon.svelte";
 
   const links = {
-    home: '/',
-    settings: '/settings',
-    collect: '/collect',
-    history: '/history',
+    home: "/",
+    settings: "/settings",
+    collect: "/collect",
+    history: "/history",
   };
 </script>
 
 <nav>
-  <a
-    href={links.home}
-    use:link
-  >
-    <HomeIcon selected={$location === links.home}/>
+  <a href={links.home} use:link>
+    <HomeIcon selected={$location === links.home} />
   </a>
-  <a
-    href={links.collect}
-    use:link
-  >
-    <CollectIcon selected={$location === links.collect}/>
+  <a href={links.collect} use:link>
+    <CollectIcon selected={$location === links.collect} />
   </a>
-  <a
-    href={links.history}
-    use:link
-  >
-    <TimerIcon selected={$location === links.history}/>
+  <a href={links.history} use:link>
+    <TimerIcon selected={$location === links.history} />
   </a>
-  <a
-    href={links.settings}
-    use:link
-  >
-    <GearIcon selected={$location === links.settings}/>
+  <a on:click={() => push("/settings")} href={links.settings} use:link>
+    <GearIcon selected={$location === links.settings} />
   </a>
 </nav>
 

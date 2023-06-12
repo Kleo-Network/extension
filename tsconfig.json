@@ -1,11 +1,6 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
-  "include": [
-    "popup/**/*",
-    "core/**/*",
-    "lib/**/*",
-    "types/**/*"
-  ],
+  "include": ["popup/**/*", "core/**/*", "lib/**/*", "types/**/*"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*", "dist"],
   "compilerOptions": {
     "rootDir": ".",
@@ -16,13 +11,11 @@
       "inpage/*": ["core/inpage/*"],
       "config/*": ["config/*"],
       "lib/*": ["lib/*"],
-      "types/*": ["types/*"],
+      "types/*": ["types/*"]
     },
     "resolveJsonModule": true,
     "baseUrl": ".",
     "isolatedModules": false
   },
-  "types": [
-    "chrome"
-  ]
+  "types": ["chrome"]
 }

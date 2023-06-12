@@ -1,21 +1,20 @@
-
-import { wrap } from 'svelte-spa-router/wrap';
+import { wrap } from "svelte-spa-router/wrap";
 import { routerGuard } from "./guard";
 
 import Home from "../pages/Home.svelte";
 import Connect from "../pages/Connect.svelte";
+import Settings from "../pages/Settings.svelte";
 
 export default {
-  '/': wrap({
+  "/": wrap({
     component: Home,
-    conditions: [
-      routerGuard
-    ]
+    conditions: [routerGuard],
   }),
-  '/connect': wrap({
+  "/connect": wrap({
     component: Connect,
-    conditions: [
-      routerGuard
-    ]
-  })
-}
+    conditions: [routerGuard],
+  }),
+  "/settings": wrap({
+    component: Settings,
+  }),
+};

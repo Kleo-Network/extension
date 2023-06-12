@@ -1,13 +1,11 @@
 <script lang="ts">
+  import { link, location, push } from "svelte-spa-router";
+  import { createEventDispatcher } from "svelte";
 
-  import { link, location, push } from 'svelte-spa-router';
-  import { createEventDispatcher } from 'svelte';
-
-  import Refresh from './icons/Refresh.svelte';
-  import ExpandIcon from './icons/Expand.svelte';
-  import ViewIcon from './icons/View.svelte';
-  import LockIcon from './icons/Lock.svelte';
-
+  import Refresh from "./icons/Refresh.svelte";
+  import ExpandIcon from "./icons/Expand.svelte";
+  import ViewIcon from "./icons/View.svelte";
+  import LockIcon from "./icons/Lock.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -16,57 +14,39 @@
   export let view = false;
   export let lock = false;
 
-
   const onRefresh = () => {
-    dispatch('refresh');
+    dispatch("refresh");
   };
   const viewOnViewBlock = () => {
-    const url = "https://www.google.com"
+    const url = "https://www.google.com";
   };
   const handleOnLock = async () => {
-    push('/lock');
+    push("/lock");
   };
 </script>
 
-<nav>
-  <a
-    class="netwrok"
-    class:mainnet={true}
-    href="/netwrok"
-    use:link
-  >
+<nav class="flex w-full justify-between items-center px-2">
+  <a class="network" class:mainnet={true} href="/network" use:link>
     <span />
   </a>
-  <div class="icons-warp">
+  <div class="icons-warp flex space-x-2 items-center">
     {#if expand}
-      <span
-        class="expand"
-        on:click={() => console.log($location)}
-      >
+      <span class="expand" on:click={() => console.log($location)}>
         <ExpandIcon className="icon" />
       </span>
     {/if}
     {#if refresh}
-      <span
-        class="refresh"
-        on:click={onRefresh}
-      >
+      <span class="refresh" on:click={onRefresh}>
         <Refresh className="icon" />
       </span>
     {/if}
     {#if view}
-      <span
-        class="view"
-        on:click={viewOnViewBlock}
-      >
+      <span class="view" on:click={viewOnViewBlock}>
         <ViewIcon className="icon-view" />
       </span>
     {/if}
     {#if lock}
-      <span
-        class="lock"
-        on:click={handleOnLock}
-      >
+      <span class="lock" on:click={handleOnLock}>
         <LockIcon className="icon-lock" />
       </span>
     {/if}
@@ -88,7 +68,7 @@
       @include border-bottom-radius(8px);
     }
   }
-  a.netwrok {
+  a.network {
     height: 15px;
     width: 15px;
 
@@ -100,10 +80,6 @@
     &.mainnet {
       background-color: var(--primary-color);
     }
-  }
-  .icons-warp {
-    text-align: end;
-    width: 200px;
   }
   span {
     cursor: pointer;
