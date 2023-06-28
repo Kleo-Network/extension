@@ -24,7 +24,10 @@ export async function createNextSeedAccount(name: string) {
       name
     }
   }).send();
-  const state = warpMessage(data) as WalletState;
+  console.log("data from create account", data);
+
+  const state = warpMessage(data);
+  console.log("state from create account", state);
   updateState(state);
   return state;
 }

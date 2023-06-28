@@ -4,7 +4,7 @@
 	import flyTransition from 'popup/transitions/fly';
 	import { _ } from 'popup/i18n';
 	import guardStore from "popup/store/guard";
-
+	import {createNextSeedAccount} from "popup/backend/popup"
 	const createNewAccount = async () => {
 		console.log("this should create a new account?");
 		const store = {
@@ -12,6 +12,7 @@
 			isEnable: true
 		};
 		guardStore.set(store);
+		await createNextSeedAccount("account 1");
 		push('/');
 	};
 </script>
