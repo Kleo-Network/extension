@@ -4,7 +4,8 @@ import { Aes } from "lib/crypto/aes";
 import { BrowserStorage, buildObject } from "lib/storage";
 import { Fields } from "config/fields";
 import { Common } from "config/common";
-
+import { Cipher } from 'lib/crypto/cipher';
+ 
 export class AuthGuard {
   // hash of the password.
   #hash = new WeakMap();
@@ -19,9 +20,21 @@ export class AuthGuard {
   // Current time + some hours.
   #endSession = new Date(-1);
   #time = Common.TIME_BEFORE_LOCK;
+  #privateExtendedKey?: Uint8Array;
 
   public get lockTime() {
     return Number(this.#time);
+  }
+  get seed() {
+    this.checkSession();
+
+    const session = this.#hash.get(this) as Uint8Array;
+    const decryptSeedBytes = Cipher.decrypt(
+      this.#privateExtendedKey as Uint8Array,
+      session
+    );
+
+    return Uint8Array.from(decryptSeedBytes);
   }
 
   public get isEnable() {
