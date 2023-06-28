@@ -10,21 +10,15 @@ export const routerGuard = (e: { location: string }) => {
    const website = get(websiteStore);
    console.log("this is website store," ,website);
    console.log('this is guard store', guard);
-   if(website.confirmApp){
+   if(!guard.isReady){
+      push("/start")
+   }
+   else if(website.confirmApp){
      push("/connect")
    }
-   else
-   {
+   else{
     push("/");
    }
-   //push("/connect");
-  // if (!guard.isReady) {
-  //   push("/start");
-  // }
-
-  // if (guard.isReady && !guard.isEnable) {
-  //   push("/lock");
-  // }
   
   return true;
 
