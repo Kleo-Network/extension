@@ -4,136 +4,54 @@ import { Aes } from "lib/crypto/aes";
 import { BrowserStorage, buildObject } from "lib/storage";
 import { Fields } from "config/fields";
 import { Common } from "config/common";
-
+import { Cipher } from 'lib/crypto/cipher';
+ 
 export class AuthGuard {
-  // hash of the password.
-  #hash = new WeakMap();
-  // this property is responsible for control session.
-  #isEnable = false;
+  
+  // this property is responsible for control session.  
+  #isEnable = true;
   // this property is responsible for control wallet.
-  #isReady = false;
+  #isReady = true;
   // Imported storage in encrypted.
   #encryptImported?: string;
   // Seed phase storage in encrypted.
   #encryptSeed?: string;
-  // Current time + some hours.
-  #endSession = new Date(-1);
-  #time = Common.TIME_BEFORE_LOCK;
+  // Encrypted Private Key
+  #privateExtendedKey?: Uint8Array;
 
-  public get lockTime() {
-    return Number(this.#time);
+  checkSession() {
+    assert(this.#isReady, Fields.WALLET_NOT_READY);
+    assert(this.#isEnable, Fields.WALLET_NOT_ENABLED);
   }
-
-  public get isEnable() {
-    const now = new Date().getTime();
-    const timeDifference = this.#endSession.getTime() - now;
-
-    return timeDifference > 0 && this.#isEnable;
-  }
-
-  public get isReady() {
-    return this.#isReady;
-  }
-
-  public get encrypted() {
-    return this.#encryptSeed;
-  }
-
-  public async sync() {
-    const data = await BrowserStorage.get(
-      Fields.VAULT,
-      Fields.VAULT_IMPORTED,
-      Fields.LOCK_TIME
-    );
-
-    this.#encryptImported = data[Fields.VAULT_IMPORTED];
-    this.#encryptSeed = data[Fields.VAULT];
-
-    if (data[Fields.LOCK_TIME]) {
-      this.#time = Number(data[Fields.LOCK_TIME]);
-    } else {
-      await BrowserStorage.set(
-        buildObject(Fields.LOCK_TIME, String(Common.TIME_BEFORE_LOCK))
-      );
-    }
-
-    if (this.#encryptSeed) {
-      this.#isReady = Boolean(this.#encryptSeed);
-    }
-  }
-
-  public async setLockTime(h: number) {
-
-    this.#time = h;
-    await BrowserStorage.set(
-      buildObject(Fields.LOCK_TIME, String(this.lockTime))
-    );
-  }
-
-  public async logout() {
-    this.#isEnable = false;
-    this.#endSession = new Date(-1);
-
-    this.#hash.delete(this);
-  }
-
-  public setPassword(password: string) {
-   
-
-    try {
-      const hash = Aes.hash(password);
-      Aes.decrypt(this.#encryptSeed, hash);
-
-      if (this.#encryptImported) {
-        Aes.decrypt(this.#encryptImported, hash);
-      }
-
-      this.#isEnable = true;
-      this.#updateSession();
-      this.#hash.set(this, hash);
-    } catch (err) {
-      this.logout();
-     
-    }
-  }
-
-  /**
-   * Write decryptImported to storage.
-   * @param decryptImported - Imported account object.
-   * @return String.
-   */
-  public async updateImported(decryptImported: object[]) {
-    this.checkSession();
-
-    const hash = this.#hash.get(this);
-    const encryptImported = Aes.encrypt(JSON.stringify(decryptImported), hash);
-
-    await BrowserStorage.set(
-      buildObject(Fields.VAULT_IMPORTED, encryptImported)
-    );
-
-    this.#encryptImported = encryptImported;
-  }
-
   
+  get seed() {
+    this.checkSession();
+    const decryptSeedBytes = Cipher.decrypt(
+      this.#privateExtendedKey as Uint8Array
+    );
+
+    return Uint8Array.from(decryptSeedBytes);
+  }
+
+   public async updateImported(decryptImported: object[]) {
+      this.checkSession();
+      const encryptImported = Aes.encrypt(JSON.stringify(decryptImported), 'hash');
+
+      await BrowserStorage.set(
+        buildObject(Fields.PRIVATE_KEY_ENCRYPTED, encryptImported)
+      );
+     this.#encryptImported = encryptImported;
+  }
+
+  public async storeKey(privateKey: string){
+    const privateKeyEncrypted = Aes.encrypt(privateKey, 'hash');
+    this.#privateExtendedKey = privateKeyEncrypted;
+    await BrowserStorage.set(buildObject(Fields.PRIVATE_KEY_ENCRYPTED, privateKeyEncrypted));
+  }
+
+
 
   public decryptPrivateKey(content: string) {
-    const hash = this.#hash.get(this);
-
-    return Aes.decrypt(content, hash);
-  }
-
-  public checkSession() {
-  
-  }
-
-  async #updateSession() {
-    const now = new Date().getTime();
-    const h = Number(this.#time);
-    const newSession = new Date();
-
-    newSession.setTime(now + h * 60 * 60 * 1000);
-
-    this.#endSession = newSession;
+    return Aes.decrypt(content, 'hash');
   }
 }

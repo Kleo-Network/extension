@@ -16,6 +16,22 @@ export async function userResponseConnection(confirmed: boolean) {
   updateState(state);
   return state;
 }
+
+export async function createNextSeedAccount(name: string) {
+  const data = await new Message({
+    type: MTypePopup.CREATE_ACCOUNT_BY_SEED,
+    payload: {
+      name
+    }
+  }).send();
+  console.log("data from create account", data);
+
+  const state = warpMessage(data);
+  console.log("state from create account", state);
+  updateState(state);
+  return state;
+}
+
 export async function getState() {
   const data = await Message.signal(
     MTypePopup.GET_WALLET_STATE

@@ -1,9 +1,20 @@
 <script lang="ts">
-	import { link } from 'svelte-spa-router';
+	import  { push } from 'svelte-spa-router';
 	import { fly } from 'svelte/transition';
 	import flyTransition from 'popup/transitions/fly';
 	import { _ } from 'popup/i18n';
-
+	import guardStore from "popup/store/guard";
+	import {createNextSeedAccount} from "popup/backend/popup"
+	const createNewAccount = async () => {
+		console.log("this should create a new account?");
+		const store = {
+			isReady: true, 
+			isEnable: true
+		};
+		guardStore.set(store);
+		await createNextSeedAccount("account 1");
+		push('/');
+	};
 </script>
 
 <main in:fly={flyTransition.in}>
@@ -15,26 +26,26 @@
 		{$_('start.subt_title')}
 	</h3>
 	<div>
-		<a
-			href="/restore"
-			use:link
+		<button
 			class="btn secondary"
 		>
 			{$_('start.btn_restore')}
-		</a>
-		<a
-			href="/create"
-			use:link
+	</button>
+		<button
+			on:click={createNewAccount}
 			class="btn primary"
 		>
 			{$_('start.btn_create')}
-		</a>
+	</button>
 	</div>
 </main>
 
 <style lang="scss">
 	@import "../styles/mixins";
 
+	button {
+		 margin-right: 10px;
+	}
 	img {
 		max-width: 500px;
     width: calc(100vw - 90px);

@@ -15,6 +15,10 @@ export function startBackground(core: KleoBackground) {
         core.connect.openPopupConnect(msg.payload, sendResponse);
         return true;
   
+      case MTypePopup.CREATE_ACCOUNT_BY_SEED:
+        console.log("background call");  
+        core.account.createAccountBySeed(msg.payload.name, sendResponse);
+        return true;
       case MTypePopup.USER_RESPONSE_DAPP:
         core.connect.confirm(msg.payload, sendResponse);
         return true;

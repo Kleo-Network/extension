@@ -2,7 +2,7 @@ import { KleoConnect } from "./connect";
 import { KleoCore } from "./core";
 import { KleoPopup } from "./popup";
 import { KleoSynchronizer } from "./synchronizer";
-
+import { KleoAccount } from "./account";
 import { Runtime } from "lib/runtime";
 
 export class KleoBackground {
@@ -10,6 +10,7 @@ export class KleoBackground {
   public readonly popup = new KleoPopup(this.#core);
   public readonly synchronizer = new KleoSynchronizer(this.#core);
   public readonly connect = new KleoConnect(this.#core);
+  public readonly account = new KleoAccount(this.#core);
   public async sync() {
     Runtime.runtime.onInstalled.addListener(async (event) => {
       await this.synchronizer.sync();

@@ -10,6 +10,11 @@ export class KleoConnect {
     constructor(core: KleoCore) {
         this.#core = core;
     }
+    public async addAccountFromSeed(seed: Uint8Array, name: string) {
+      // create new account using seed
+      return "account";
+    }
+  
     public async confirm(app: AppConnect, sendResponse: StreamResponse){
         console.log("confirm has been called sir");
         await new TabsMessage({
