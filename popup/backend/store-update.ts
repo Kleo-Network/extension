@@ -6,6 +6,7 @@ import websiteStore from "popup/store/connect";
 
 export function updateState(state: WalletState) {
   document.body.setAttribute("theme", "light");
+  console.log("STATE",state);
   guardStore.set(state.guard);
   themeStore.set("light");
   websiteStore.set(state.websiteStore);

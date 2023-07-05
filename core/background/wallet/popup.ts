@@ -31,6 +31,7 @@ export class KleoPopup {
   }
 
   public initPopup(sendResponse: StreamResponse) {
+    console.log("this core state", this.#core.state);
     sendResponse({
       resolve: this.#core.state,
     });
