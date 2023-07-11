@@ -7,11 +7,6 @@
 	import {createNextSeedAccount} from "popup/backend/popup"
 	const createNewAccount = async () => {
 		console.log("this should create a new account?");
-		const store = {
-			isReady: true, 
-			isEnable: true
-		};
-		guardStore.set(store);
 		await createNextSeedAccount("account 1");
 		push('/');
 	};

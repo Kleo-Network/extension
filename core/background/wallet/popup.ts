@@ -12,6 +12,7 @@ export class KleoPopup {
 
   }
 
+  
   public updateStatus() {
 
     if (this.#core.guard.isEnable && this.#core.guard.isReady) {
@@ -23,7 +24,7 @@ export class KleoPopup {
   }
 
   public async logout(sendResponse: StreamResponse) {
-    await this.#core.guard.logout();
+    //await this.#core.guard.logout();
     this.updateStatus();
     sendResponse({
       resolve: this.#core.state,
@@ -39,21 +40,21 @@ export class KleoPopup {
 
   
 
-  public async unlock(password: string, sendResponse: StreamResponse) {
-    try {
-      this.#core.guard.setPassword(password);
+  // public async unlock(password: string, sendResponse: StreamResponse) {
+  //   try {
+  //     this.#core.guard.setPassword(password);
     
-      this.updateStatus();
+  //     this.updateStatus();
 
-      return sendResponse({
-        resolve: this.#core.state,
-      });
-    } catch (err) {
-      return sendResponse({
-        reject: err.message,
-      });
-    }
-  }
+  //     return sendResponse({
+  //       resolve: this.#core.state,
+  //     });
+  //   } catch (err) {
+  //     return sendResponse({
+  //       reject: err.message,
+  //     });
+  //   }
+  // }
 
 
   #subscribe() {

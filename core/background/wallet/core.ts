@@ -6,16 +6,13 @@ import type { WalletState } from "types/account";
 
 
 export class KleoCore {
-  public readonly guard = new AuthGuard();
+  public  guard = new AuthGuard();
   public prompt = new PromptService();
   public connect = new WebsiteController();
   public get state(): WalletState {
     return {
       popup: this.prompt.enabled,
-      guard: {
-        isReady: this.guard.isReady,
-        isEnable: this.guard.isEnable,
-      },
+      guard: this.guard.state(),
       websiteStore: {
         confirmApp: this.connect.confirmApp,
         connections: this.connect.connections

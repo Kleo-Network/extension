@@ -1,6 +1,8 @@
 import type { KleoCore } from "./core";
 import type { StreamResponse } from "types/stream";
-import Wallet from 'ethereumjs-wallet'
+import { randomBytes } from 'lib/crypto/random';
+import { isValidChecksumAddress, unpadBuffer, BN } from 'ethereumjs-util'
+import { Buffer } from 'buffer';
 
 export class KleoAccount {
     readonly #core: KleoCore;
@@ -10,14 +12,11 @@ export class KleoAccount {
     }
     public async createAccountBySeed(name: string, sendResponse?: StreamResponse) {
       try {
-        console.log("seed", this.#core.guard);
-        const EthWallet = Wallet.default.generate();
-        
-        //console.log("address: " + EthWallet.getAddressString());
-        //console.log("privateKey: " + EthWallet.getPrivateKeyString());
+       
+        console.log("what kind of hell is this?");
+        const privateKey = "0x" + new Buffer(randomBytes(32)).toString('hex');
+        console.log("what kind of hell is this?",privateKey);
 
-        this.#core.guard.storeKey(EthWallet.getPrivateKeyString());
-        console.log("private key hashed" , this.#core.guard.privateKeyEncrypted);
         sendResponse({
           resolve: this.#core.state
         });

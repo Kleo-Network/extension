@@ -9,49 +9,61 @@ import { Cipher } from 'lib/crypto/cipher';
 export class AuthGuard {
   
   // this property is responsible for control session.  
-  #isEnable = true;
+  #isEnable = false;
   // this property is responsible for control wallet.
-  #isReady = true;
+  #isReady = false;
   // Imported storage in encrypted.
   #encryptImported?: string;
   // Seed phase storage in encrypted.
   #encryptSeed?: string;
   // Encrypted Private Key
-  #privateExtendedKey?: Uint8Array;
+  #privateExtendedKey?: string;
 
   checkSession() {
     assert(this.#isReady, Fields.WALLET_NOT_READY);
     assert(this.#isEnable, Fields.WALLET_NOT_ENABLED);
   }
   
-  get seed() {
-    this.checkSession();
-    const decryptSeedBytes = Cipher.decrypt(
-      this.#privateExtendedKey as Uint8Array
-    );
-
-    return Uint8Array.from(decryptSeedBytes);
+  get isEnable() {
+    return this.#isEnable;
   }
 
-   public async updateImported(decryptImported: object[]) {
-      this.checkSession();
-      const encryptImported = Aes.encrypt(JSON.stringify(decryptImported), 'hash');
-
-      await BrowserStorage.set(
-        buildObject(Fields.PRIVATE_KEY_ENCRYPTED, encryptImported)
-      );
-     this.#encryptImported = encryptImported;
-  }
-
-  public async storeKey(privateKey: string){
-    const privateKeyEncrypted = Aes.encrypt(privateKey, 'hash');
-    this.#privateExtendedKey = privateKeyEncrypted;
-    await BrowserStorage.set(buildObject(Fields.PRIVATE_KEY_ENCRYPTED, privateKeyEncrypted));
+  get isReady() {
+    return this.#isReady;
   }
 
 
+  // public async updateImported(decryptImported: object[]) {
+  //     this.checkSession();
+  //     const encryptImported = Aes.encrypt(JSON.stringify(decryptImported), 'hash');
 
-  public decryptPrivateKey(content: string) {
-    return Aes.decrypt(content, 'hash');
+  //     await BrowserStorage.set(
+  //       buildObject(Fields.PRIVATE_KEY_ENCRYPTED, encryptImported)
+  //     );
+  //    this.#encryptImported = encryptImported;
+  // }
+
+  // public async storeKey(privateKey: string){
+  //   const privateKeyEncrypted = Aes.encrypt(privateKey, 'hash');
+  //   this.#privateExtendedKey = privateKeyEncrypted;
+  //   this.#isEnable = true;
+  //   this.#isReady = true;
+  //   await BrowserStorage.set(buildObject(Fields.PRIVATE_KEY_ENCRYPTED, privateKeyEncrypted));
+  // }
+
+  public state() {
+    return {
+      isEnable: this.#isEnable,
+      isReady: this.#isReady,
+    };
   }
+
+  public async sync() {
+    this.#isEnable = this.#isEnable;
+    this.#isReady = this.#isReady;
+  }
+
+  // public decryptPrivateKey(content: string) {
+  //   return Aes.decrypt(content, 'hash');
+  // }
 }

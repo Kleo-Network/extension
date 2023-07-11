@@ -9,10 +9,11 @@ export class KleoSynchronizer {
 
   public async sync() {
     console.log("start-sync");
-    await this.#core.guard.sync();
     await this.#core.prompt.sync();
     await this.#core.connect.sync();
+    await this.#core.guard.sync();
+
     //await this.#core.account.sync();
-    console.log("end-sync");
+    console.log("end-sync", this.#core);
   }
 }
