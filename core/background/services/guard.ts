@@ -32,6 +32,12 @@ export class AuthGuard {
     return this.#isReady;
   }
 
+  public async enableAccount(){
+    this.#isEnable = true;
+  }
+  public async readyAccount(){
+    this.#isReady = true;
+  }
 
   // public async updateImported(decryptImported: object[]) {
   //     this.checkSession();

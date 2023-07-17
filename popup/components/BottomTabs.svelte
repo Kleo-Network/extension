@@ -1,7 +1,6 @@
 <script lang="ts">
   import { location, link } from 'svelte-spa-router';
 
-  import CollectIcon from './CollectIcon.svelte';
   import GearIcon from './GearIcon.svelte';
   import HomeIcon from './HomeIcon.svelte';
   import TimerIcon from './TimerIcon.svelte';
@@ -9,7 +8,6 @@
   const links = {
     home: '/',
     settings: '/settings',
-    collect: '/collect',
     history: '/history',
   };
 </script>
@@ -21,12 +19,7 @@
   >
     <HomeIcon selected={$location === links.home}/>
   </a>
-  <a
-    href={links.collect}
-    use:link
-  >
-    <CollectIcon selected={$location === links.collect}/>
-  </a>
+
   <a
     href={links.history}
     use:link
