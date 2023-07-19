@@ -21,9 +21,9 @@ export class KleoBackground {
 
     await this.synchronizer.sync();
 
-    // if (this.#core.guard.isReady) {
+     if (this.#core.guard.isReady) {
       Runtime.runtime.onInstalled.removeListener(() => null);
-    //}
+    }
   }
   
 }

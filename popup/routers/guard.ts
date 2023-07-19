@@ -14,9 +14,15 @@ export const routerGuard = (e: { location: string }) => {
    else if(website.confirmApp){
      push("/connect")
    }
-   else{
+   else if(e.location != "/" && guard.isEnable && guard.isReady){
+    push(e.location)
+   }
+   else if(guard.isEnable && guard.isReady){
     push("/");
    }
+
+   console.log("location from guard.ts", location);
+   console.log("e", e);
   
   return true;
 
