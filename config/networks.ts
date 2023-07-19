@@ -1,13 +1,7 @@
+export const NETWORKS = [
+   "polygon", "ethereum","binance"
+];
 
+export const STORAGE = [
+    "ipfs" , "arweave", "binace"];
 
-export enum Polygon {
-    RPC = "https://polygon-rpc.com",
-}
-
-export enum Ethereum {
-
-}
-
-export enum Binance {
-
-}

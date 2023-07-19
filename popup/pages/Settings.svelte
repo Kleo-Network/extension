@@ -5,6 +5,8 @@
 	import BottomTabs from '../components/BottomTabs.svelte';
 	import TopBar from '../components/TopBar.svelte';
     import Jumbotron from '../components/Jumbotron.svelte';
+	import Toggle from '../components/Toggle.svelte';
+	import {NETWORKS, STORAGE} from 'config/networks';
 
 	let items = [
 		{
@@ -56,11 +58,62 @@
 		lock
 	/>
 	<main>
+		<h2>Settings</h2>
 		<ul>
-			{#each items as item, i}
-                <Jumbotron title={item.title} description={item.description} />
+
+			<Jumbotron title="Select Network">
 				
-			{/each}
+			<select>
+				{#each NETWORKS as net}
+					<option
+						value={net}
+					>
+						{net}
+					</option>
+				{/each}
+			</select>
+		
+		</Jumbotron>
+
+		<Jumbotron title="Select Storage">
+				
+			<select>
+				{#each STORAGE as st}
+					<option
+						value={st}
+					>
+						{st}
+					</option>
+				{/each}
+			</select>
+		
+		</Jumbotron>
+		<Jumbotron
+		title="Let Kleo Choose Default?"
+		description="Allow Kleo to select the default option for you."
+	>
+		<div class="right">
+			<Toggle checked={true} />
+		</div>
+	</Jumbotron>
+		<Jumbotron
+		title="Privacy Policy"
+		description="I agree with terms and conditions of Kleo Network"
+	>
+		<div class="right">
+			<Toggle checked={true} />
+		</div>
+	</Jumbotron>
+<Jumbotron
+				title="Export Private Key"
+			>
+				<span
+					class="warning"
+					
+				>
+					Copy Private Key
+				</span>
+			</Jumbotron>
 		</ul>
 	</main>
 	<BottomTabs />
@@ -90,6 +143,25 @@
 			min-width: 290px;
 
 			@include flex-between-row;
+		}
+	}
+
+	span {
+		font-family: Demi;
+		margin: auto;
+		text-align: center;
+		&.disabled {
+			cursor: unset !important;
+			opacity: 0.5;
+		}
+		&.warning {
+			cursor: pointer;
+			font-size: 16px;
+			color: var(--primary-color);
+
+			&:hover {
+				color: var(--warning-color);
+			}
 		}
 	}
 </style>

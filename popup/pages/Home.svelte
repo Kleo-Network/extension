@@ -68,9 +68,7 @@
 
 <style lang="scss">
 	@import "../styles/mixins";
-	h2 {
-		font-size: 12pt;
-	}
+	
 	.icon_block {
 		font-size: 13px;
 		width: 20px;

@@ -4,9 +4,9 @@
   </script>
   
   <div class="card">
-    <h2>
+    <h3>
       {title}
-    </h2>
+    </h3>
     <p>
       {description}
     </p>

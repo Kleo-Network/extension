@@ -19,6 +19,9 @@
 
   text-shadow:0 0 1px var(--muted-color);
 }
+:global(h2){
+  font-size: 12pt;
+}
 
 :global(b) {
   font-family: Demi;

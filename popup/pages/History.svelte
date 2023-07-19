@@ -44,6 +44,7 @@
 		lock
 	/>
 	<main>
+		<h2>History</h2>
 		{#each items as item, i}
             <HistoryTron title={item.title} url={item.url} />
 				
