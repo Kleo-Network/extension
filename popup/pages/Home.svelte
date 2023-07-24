@@ -4,63 +4,68 @@
 	import { link, push } from "svelte-spa-router";
 	import TopBar from "../components/TopBar.svelte";
 	import BottomTabs from "../components/BottomTabs.svelte";
-
-
 	const recentTransactions = [
-	{
-		"domain": "www.dappradar.com",
-		"url": "https://testnet-zkevm.polygonscan.com/tx/0x6efc2c738d6c7765fa4fd701a78e7093597b2f7d9acc366a8263afc64f109876"
-	},{
-		"domain": "www.opensea.io",
-		"url": "https://testnet-zkevm.polygonscan.com/tx/0x4b13a584e46d04ad661fe579a8756a9a9857e1cfa9686b9d5c07908894461c64"
-	},
-	{
-		"domain": "www.binance.com",
-		"url": "https://testnet-zkevm.polygonscan.com/tx/0xec7c82fd79bcc6bde186188c3aab56dbe304e28dd42e38ccaca568ff0efb7bde"
-	},
-	{
-		"domain": "www.okx.com",
-		"url": "https://testnet-zkevm.polygonscan.com/tx/0x277dd6551cee7a150402da6b32399e3c0eacb4ddaf1556a8352336049a167237"
-	},
-	{
-		"domain": "nftmarketplace.com",
-		"url": "https://testnet-zkevm.polygonscan.com/tx/0xcdc3bcf14ad5d64aeda361de7f7cb402d81c239589b3e043dec05a914dfbcd82"
-	}];
-	
-
+		{
+			domain: "www.dappradar.com",
+			url: "https://testnet-zkevm.polygonscan.com/tx/0x6efc2c738d6c7765fa4fd701a78e7093597b2f7d9acc366a8263afc64f109876",
+			data: [
+				{
+					keyword: "btc price usd",
+					x: "23", // x times
+					y: "30", // last y days
+				},
+				{ keyword: "binance.com", x: "10", y: "40" },
+				{ keyword: "cricket", x: "122", y: "122" },
+			],
+			intent_generic: "Used to give credits and promotional offers",
+			intent_detail: "More detailed text here",
+		},
+		{
+			domain: "www.opensea.io",
+			url: "https://testnet-zkevm.polygonscan.com/tx/0x4b13a584e46d04ad661fe579a8756a9a9857e1cfa9686b9d5c07908894461c64",
+		},
+		{
+			domain: "www.binance.com",
+			url: "https://testnet-zkevm.polygonscan.com/tx/0xec7c82fd79bcc6bde186188c3aab56dbe304e28dd42e38ccaca568ff0efb7bde",
+		},
+		{
+			domain: "www.okx.com",
+			url: "https://testnet-zkevm.polygonscan.com/tx/0x277dd6551cee7a150402da6b32399e3c0eacb4ddaf1556a8352336049a167237",
+		},
+		{
+			domain: "nftmarketplace.com",
+			url: "https://testnet-zkevm.polygonscan.com/tx/0xcdc3bcf14ad5d64aeda361de7f7cb402d81c239589b3e043dec05a914dfbcd82",
+		},
+	];
 </script>
 
 <section>
 	<TopBar refresh view lock on:refresh={() => console.log("hello")} />
 
 	<main>
-		<div class="bar-wrapper">
-			
-		</div>
+		<div class="bar-wrapper" />
 		<div class="balance">100 $KLEO</div>
-		
+
 		<div class="wrapper">
 			<h2>Connected Sites</h2>
 			{#each recentTransactions as tx}
-			<div class="block" on:click={() => push(`/detail`)}>
-				<p>Connected to <a href="google.com">{tx.domain}</a></p>
+				<div class="block" on:click={() => push(`/detail`)}>
+					<p>Connected to <a href="google.com">{tx.domain}</a></p>
 
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					fill="currentColor"
-					class="w-6 h-6 icon_block"
-				>
-					<path
-						fill-rule="evenodd"
-						d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
-						clip-rule="evenodd"
-					/>
-				</svg>
-			</div>
-		{/each}
-			
-			
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						class="w-6 h-6 icon_block"
+					>
+						<path
+							fill-rule="evenodd"
+							d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
+							clip-rule="evenodd"
+						/>
+					</svg>
+				</div>
+			{/each}
 		</div>
 	</main>
 	<BottomTabs />
@@ -68,7 +73,7 @@
 
 <style lang="scss">
 	@import "../styles/mixins";
-	
+
 	.icon_block {
 		font-size: 13px;
 		width: 20px;
