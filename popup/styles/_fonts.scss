@@ -19,10 +19,36 @@
 	src: url('/fonts/AvenirNextLTPro-Regular.otf') format("opentype");
 }
 
+@font-face {
+	font-family: 'RobotoBold';
+	src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+	
+}
+
+@font-face {
+	font-family: 'RobotoLight';
+	src: url('/fonts/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'RobotoMedium';
+	src: url('/fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'RobotRegular';
+	src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
 $font-family-Bold:    AvenirNextLTPro-Bold    !default;
 $font-family-Medium:  AvenirNextLTPro-Medium  !default;
 $font-family-Regular: AvenirNextLTPro-Regular !default;
 $font-family-Light:   AvenirNextLTPro-Demi    !default;
+
+$font-family-RobotoBold:    Roboto-Bold    !default;
+$font-family-RobotoMedium:  Roboto-Medium  !default;
+$font-family-RobotoRegular: Roboto-Regular !default;
+$font-family-RobotoLight:  Roboto-Light    !default;
 
 
 :global(address, caption, cite, code, dfn, em, strong, th, var) {
