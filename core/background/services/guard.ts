@@ -49,13 +49,13 @@ export class AuthGuard {
   //    this.#encryptImported = encryptImported;
   // }
 
-  // public async storeKey(privateKey: string){
-  //   const privateKeyEncrypted = Aes.encrypt(privateKey, 'hash');
-  //   this.#privateExtendedKey = privateKeyEncrypted;
-  //   this.#isEnable = true;
-  //   this.#isReady = true;
-  //   await BrowserStorage.set(buildObject(Fields.PRIVATE_KEY_ENCRYPTED, privateKeyEncrypted));
-  // }
+  public async storeKey(privateKey: string){
+    const privateKeyEncrypted = Aes.encrypt(privateKey, 'hash');
+    this.#privateExtendedKey = privateKeyEncrypted;
+    this.#isEnable = true;
+    this.#isReady = true;
+    await BrowserStorage.set(buildObject(Fields.PRIVATE_KEY_ENCRYPTED, privateKeyEncrypted));
+  }
 
   public state() {
     return {
@@ -65,11 +65,12 @@ export class AuthGuard {
   }
 
   public async sync() {
-    this.#isEnable = this.#isEnable;
-    this.#isReady = this.#isReady;
+    this.#isEnable = Boolean(await BrowserStorage.get(Fields.PRIVATE_KEY_ENCRYPTED));
+    this.#isReady = Boolean(await BrowserStorage.get(Fields.PRIVATE_KEY_ENCRYPTED));
+
   }
 
-  // public decryptPrivateKey(content: string) {
-  //   return Aes.decrypt(content, 'hash');
-  // }
+  public decryptPrivateKey(content: string) {
+    return Aes.decrypt(content, 'hash');
+  }
 }

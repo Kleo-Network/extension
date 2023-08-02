@@ -29,8 +29,9 @@ export class KleoConnect {
         });
     }
     public async openPopupConnect(app: AppConnect, sendResponse: StreamResponse){
+
         const isConnected = this.#core.connect.isConnected(app.domain);
-        console.log("is the domain connected previously?", isConnected);
+        console.log("open popup connected from from connect.ts", isConnected);
         
         if(isConnected) {
             await new TabsMessage({

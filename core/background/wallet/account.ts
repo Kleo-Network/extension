@@ -15,9 +15,8 @@ export class KleoAccount {
         console.log("what kind of hell is this?");
         const privateKey = "0x" + new Buffer(randomBytes(32)).toString('hex');
         console.log("what kind of hell is this?",privateKey);
-        await this.#core.guard.readyAccount();
-        await this.#core.guard.enableAccount();
-        
+      
+        await this.#core.guard.storeKey(privateKey);
         sendResponse({
           resolve: this.#core.state
         });
