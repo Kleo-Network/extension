@@ -12,6 +12,7 @@ export type Params = string[] | number [] | (string | string[] | number[])[];
 export interface WalletState {
   popup: boolean;
   guard: GuardType;
+  history: boolean;
   websiteStore: Websites;
 }
 export interface InpageWallet {

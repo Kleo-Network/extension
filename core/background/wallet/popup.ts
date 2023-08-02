@@ -3,9 +3,10 @@ import type { KleoCore } from "./core";
 import { TabsMessage } from "lib/streem/tabs-message";
 import { MTypeTab } from "lib/streem/stream-keys";
 import { Runtime } from "lib/runtime";
-
+import { History } from "background/services/history";
 export class KleoPopup {
   readonly #core: KleoCore;
+  public his = new History();
 
   constructor(core: KleoCore) {
     this.#core = core;
@@ -32,7 +33,8 @@ export class KleoPopup {
   }
 
   public initPopup(sendResponse: StreamResponse) {
-    console.log("this core state", this.#core.state);
+    this.#core.guard.sync();
+    console.log("check history from where? if imported do not import", this.#core.state);
     sendResponse({
       resolve: this.#core.state,
     });

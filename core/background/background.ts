@@ -16,7 +16,6 @@ export function startBackground(core: KleoBackground) {
         return true;
   
       case MTypePopup.CREATE_ACCOUNT_BY_SEED:
-        console.log("background call");  
         core.account.createAccountBySeed(msg.payload.name, sendResponse);
         return true;
       
