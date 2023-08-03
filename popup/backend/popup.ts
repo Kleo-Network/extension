@@ -2,9 +2,9 @@ import { Message } from "lib/streem/message";
 import { MTypePopup } from "lib/streem/stream-keys";
 import { warpMessage } from "lib/utils/warp-message";
 import { updateState } from "./store-update";
-import type { WalletState, formData } from "types/account";
+import type { WalletState, AppConnect } from "types/account";
 
-export async function userResponseConnection(form: formData) {
+export async function userResponseConnection(form: AppConnect) {
   const data = await new Message({
     type: MTypePopup.USER_RESPONSE_DAPP,
     payload: {

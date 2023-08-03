@@ -20,7 +20,6 @@ export interface InpageWallet {
 }
 
 export interface formData {
-   data: { 
     header: string; 
     default: boolean;
      selected: boolean;
@@ -31,7 +30,13 @@ export interface formData {
         default: boolean; 
         selected: boolean; 
       }[]; 
-    }[]; 
-      click: boolean; 
-    
+    }; 
+
+export interface AppConnect {
+  form: formData[];
+  domain: string;
+  title: string;
+  icon: string;
+  uuid: string;
+  click: boolean;
 }

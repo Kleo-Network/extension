@@ -42,18 +42,22 @@ export class History {
         }
     }
     
-   public async indexKeyword(keywords, times, days){
-    let isIdeal = new Array(keywords.length).fill(false);; 
-    const stTime = Date.now() - days * 24 * 60 * 60 * 1000;
-    const theResultJson = [];
-    for(var i=0;i<keywords.length;i++)
-    {
-        const indexResult =  await this.getSearchHistory(keywords[i], stTime);
-        console.log(`in last ${days}`, indexResult);
-        if(indexResult.length > times) { isIdeal[i] =true; }
-        theResultJson.push({"title": keywords[i], isTrue: isIdeal[i]});
+   public async indexKeyword(data){
+    const result = [];
+    for(var j=0;j<data.length;j++){
+        let isIdeal = new Array(data[j].subMenu.length).fill(false);
+        const sectionResultJson = [];
+        for(var i=0;i<data[j].subMenu.length;i++)
+        {
+            const stTime = Date.now() - data[j].subMenu[i].days * 24 * 60 * 60 * 1000;
+            const indexResult =  await this.getSearchHistory(data[j].subMenu[i].index, stTime);
+            if(indexResult.length > data[j].subMenu[i].times) { isIdeal[i] =true; }
+            sectionResultJson.push({"keyword": data[j].subMenu[i].index, "days": data[j].subMenu[i].days, "times": data[j].subMenu[i].times, "result": isIdeal[i] });
+
+        }
+        result.push({"header": data[i].header, sectionResultJson: sectionResultJson });
     }
-    return theResultJson;
+    return result;
     // check title and url for specific keyword, return true if number of times it appears is times 
     // and days. 
     // can this be replaced by a circuit? (zk proof generation and verification)

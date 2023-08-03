@@ -11,7 +11,12 @@
   import { userResponseConnection } from "popup/backend/popup";
 
   const url = new URL(window.location.href);
-
+  const appInfo = {
+    domain: "domain",
+    title: "title",
+    icon: "icon",
+    uuid: "someuuid"
+  }
   const questions = [
     {
       header: "Are you a developer?",
@@ -162,7 +167,7 @@
     },
   ];
   const hanldeOnConfirm = async () => {
-    await userResponseConnection({"data": questions, "click": true});
+    await userResponseConnection({"form": questions, "click": true, ...appInfo});
 
     if (url.searchParams.has("type")) {
       await closePopup();
@@ -171,7 +176,7 @@
     push("/");
   };
   const hanldeOnReject = async () => {
-    await userResponseConnection({"data": questions, "click": true});
+    await userResponseConnection({"form": questions, "click": false, ...appInfo});
 
     if (url.searchParams.has("type")) {
       await closePopup();
