@@ -18,3 +18,25 @@ export interface WalletState {
 export interface InpageWallet {
   hex: string;
 }
+
+export interface formData {
+    header: string; 
+    default: boolean;
+     selected: boolean;
+      subMenu: { 
+        index: string; 
+        times: number; 
+        days: number; 
+        default: boolean; 
+        selected: boolean; 
+      }[]; 
+    }; 
+
+export interface AppConnect {
+  form: formData[];
+  domain: string;
+  title: string;
+  icon: string;
+  uuid: string;
+  click: boolean;
+}

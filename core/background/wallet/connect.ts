@@ -1,12 +1,12 @@
 import type { StreamResponse } from "types/stream";
 import type { KleoCore } from "./core";
-import type { AppConnect } from 'types/app-connect';
+import type { AppConnect } from 'types/account';
 import { TabsMessage } from "lib/streem/tabs-message";
 import { MTypeTab } from "lib/streem/stream-keys";
-
+import { History } from "background/services/history";
 export class KleoConnect {
     readonly #core: KleoCore;
-
+    public history = new History();
     constructor(core: KleoCore) {
         this.#core = core;
     }
@@ -16,11 +16,16 @@ export class KleoConnect {
     }
   
     public async confirm(app: AppConnect, sendResponse: StreamResponse){
-        console.log("confirm has been called sir");
+        console.log("confirm has been called from wallet/connect.ts");
+        
+        const result = await this.history.indexKeyword(app.form);
+        
         await new TabsMessage({
           type: MTypeTab.RESPONSE_TO_DAPP,
           payload: {
-            "formdata": "form"
+            "indexData": {
+              result
+            }
           }
         }).send();
         await this.#core.connect.add(app);
