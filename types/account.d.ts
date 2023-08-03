@@ -18,3 +18,20 @@ export interface WalletState {
 export interface InpageWallet {
   hex: string;
 }
+
+export interface formData {
+   data: { 
+    header: string; 
+    default: boolean;
+     selected: boolean;
+      subMenu: { 
+        index: string; 
+        times: number; 
+        days: number; 
+        default: boolean; 
+        selected: boolean; 
+      }[]; 
+    }[]; 
+      click: boolean; 
+    
+}

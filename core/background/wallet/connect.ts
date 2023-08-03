@@ -3,10 +3,10 @@ import type { KleoCore } from "./core";
 import type { AppConnect } from 'types/app-connect';
 import { TabsMessage } from "lib/streem/tabs-message";
 import { MTypeTab } from "lib/streem/stream-keys";
-
+import { History } from "background/services/history";
 export class KleoConnect {
     readonly #core: KleoCore;
-
+    public history = new History();
     constructor(core: KleoCore) {
         this.#core = core;
     }
@@ -16,11 +16,16 @@ export class KleoConnect {
     }
   
     public async confirm(app: AppConnect, sendResponse: StreamResponse){
-        console.log("confirm has been called sir");
+        console.log("confirm has been called from wallet/connect.ts");
+        console.log("app", app);
+        const result = await this.history.indexKeyword(['github.com'],2,2);
+        
         await new TabsMessage({
           type: MTypeTab.RESPONSE_TO_DAPP,
           payload: {
-            "formdata": "form"
+            "indexData": {
+              result
+            }
           }
         }).send();
         await this.#core.connect.add(app);

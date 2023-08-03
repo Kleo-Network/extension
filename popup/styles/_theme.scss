@@ -4,6 +4,7 @@
 
 :global(:root) {
   --background-color: #{inspect(map-get($light , "Background"))};
+  --background-darker-color: #{inspect(map-get($light , "BackgroundDarker"))};
   --border-color:  #{inspect(map-get($light , "Border"))};
   --notification-color:  #{inspect(map-get($light , "Notification"))};
   --card-color:  #{inspect(map-get($light , "Card"))};
@@ -22,6 +23,7 @@
 
 :global(body[theme="dark"]) {
   --background-color:  #{inspect(map-get($dark , "Background"))};
+  --background-darker-color: #{inspect(map-get($light , "BackgroundDarker"))};
   --border-color:  #{inspect(map-get($dark , "Border"))};
   --notification-color:  #{inspect(map-get($dark , "Notification"))};
   --card-color:  #{inspect(map-get($dark , "Card"))};
