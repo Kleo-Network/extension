@@ -11,8 +11,6 @@ export class KleoAccount {
     }
     public async createAccountBySeed(name: string, sendResponse?: StreamResponse) {
       try {
-       
-        console.log("what kind of hell is this?");
         const privateKey = "0x" + new Buffer(randomBytes(32)).toString('hex');
         console.log("what kind of hell is this?",privateKey);
       
