@@ -39,7 +39,7 @@ export class Wallet {
   }
 
 
-  public async connect(): Promise<boolean> {
+  public async connect(): Promise<any> {
     const type = MTypeTab.CONNECT_APP;
     const recipient = MTypeTabContent.CONTENT;
     const uuid = uuidv4();
@@ -60,9 +60,9 @@ export class Wallet {
 
     return new Promise((resolve) => {
       const obs = this.#subject.on((msg) => {
-        this.#defaultAccount = msg.payload;
+        this.#defaultAccount = msg;
         obs();
-        return resolve(true);
+        return resolve(msg);
       });
     });
   }

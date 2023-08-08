@@ -55,7 +55,7 @@ export class History {
             sectionResultJson.push({"keyword": data[j].subMenu[i].index, "days": data[j].subMenu[i].days, "times": data[j].subMenu[i].times, "result": isIdeal[i] });
 
         }
-        result.push({"header": data[i].header, sectionResultJson: sectionResultJson });
+        result.push({"header": data[j].header, sectionResultJson: sectionResultJson });
     }
     return result;
     // check title and url for specific keyword, return true if number of times it appears is times 

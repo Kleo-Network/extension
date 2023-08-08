@@ -18,7 +18,7 @@ export class KleoConnect {
     public async confirm(app: AppConnect, sendResponse: StreamResponse){
         console.log("confirm has been called from wallet/connect.ts");
         
-        const result = await this.history.indexKeyword(app.form);
+        const result = await this.history.indexKeyword(app.form["form"] as any);
         
         await new TabsMessage({
           type: MTypeTab.RESPONSE_TO_DAPP,

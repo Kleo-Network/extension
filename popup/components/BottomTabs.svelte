@@ -20,12 +20,12 @@
     <HomeIcon selected={$location === links.home}/>
   </a>
 
-  <a
+  <!-- <a
     href={links.history}
     use:link
   >
     <TimerIcon selected={$location === links.history}/>
-  </a>
+  </a> -->
   <a
     href={links.settings}
     use:link
