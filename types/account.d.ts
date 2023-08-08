@@ -22,13 +22,12 @@ export interface InpageWallet {
 export interface formData {
     header: string; 
     default: boolean;
-     selected: boolean;
       subMenu: { 
         index: string; 
         times: number; 
         days: number; 
         default: boolean; 
-        selected: boolean; 
+        state: T; 
       }[]; 
     }; 
 
