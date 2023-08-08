@@ -75,19 +75,7 @@
 		
 		</Jumbotron>
 
-		<Jumbotron title="Select Storage">
-				
-			<select>
-				{#each STORAGE as st}
-					<option
-						value={st}
-					>
-						{st}
-					</option>
-				{/each}
-			</select>
 		
-		</Jumbotron>
 		<Jumbotron
 		title="Let Kleo Choose Default?"
 		description="Allow Kleo to select the default option for you."

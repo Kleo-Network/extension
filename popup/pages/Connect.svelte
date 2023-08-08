@@ -24,14 +24,14 @@
       selected: true,
       subMenu: [
         {
-          index: "aish",
+          index: "github.com",
           times: 2,
           days: 30,
           default: true,
           selected: true,
         },
         {
-          index: "WALLET",
+          index: "gmail.com",
           times: 2,
           days: 365,
           default: false,

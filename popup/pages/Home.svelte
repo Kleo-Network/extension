@@ -4,6 +4,12 @@
 	import { link, push } from "svelte-spa-router";
 	import TopBar from "../components/TopBar.svelte";
 	import BottomTabs from "../components/BottomTabs.svelte";
+	import Account from "../components/Account.svelte";
+	const user ={ 
+		balance: "35",
+		network: "polygon",
+		address: "0x2de9449eceb7b336a776cf43b3f3916cf1b51aa6"
+	}
 	const recentTransactions = [
 		{
 			domain: "www.dappradar.com",
@@ -44,8 +50,8 @@
 
 	<main>
 		<div class="bar-wrapper" />
-		<div class="balance">100 $KLEO</div>
-
+		<div class="balance">{user.balance} $KLEO</div>
+		<Account user={user}/>
 		<div class="wrapper">
 			<h2>Connected Sites</h2>
 			{#each recentTransactions as tx}
@@ -162,7 +168,8 @@
 	div.balance {
 		max-width: 500px;
 		font-size: 30px;
-		margin-block-end: 20px;
+		margin-top: 20px;
+		margin-block-end: 0px;
 	}
 	div.bar-wrapper {
 		max-width: 500px;
