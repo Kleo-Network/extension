@@ -20,10 +20,7 @@ export class storage {
         const privateKey =  Aes.decrypt(privateKeyEncrypted, 'hash');
         return privateKey;
     }
-    private async getArweave(){
-        
-    }
-    
+   
     async encryptData(data){
         return Aes.encrypt(data, await this.getPrivateKey());
     }
