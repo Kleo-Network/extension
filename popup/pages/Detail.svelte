@@ -11,42 +11,42 @@
       default: true,
       subMenu: [
         {
-          index: "aish",
+          index: "github",
           times: 2,
           days: 30,
           default: true,
           state: ConnectStates.DESELECTED,
         },
         {
-          index: "WALLET",
+          index: "gitcoin",
           times: 2,
           days: 365,
           default: false,
           state: ConnectStates.SELECTED,
         },
         {
-          index: "BINANCE",
+          index: "stackoverflow",
           times: 2,
           days: 200,
           default: true,
           state: ConnectStates.DESELECTED,
         },
         {
-          index: "TWITTER | WATCHERGURU",
+          index: "reddit.com",
           times: 2,
           days: 30,
           default: false,
           state: ConnectStates.DISABLED,
         },
         {
-          index: "BINANCE",
+          index: "typescript",
           times: 2,
           days: 200,
           default: true,
           state: ConnectStates.SELECTED,
         },
         {
-          index: "TWITTER | WATCHERGURU",
+          index: "docs",
           times: 2,
           days: 30,
           default: false,
@@ -55,7 +55,7 @@
       ],
     },
     {
-      header: "Are you a developer?",
+      header: "Are you a trader?",
       default: true,
       subMenu: [
         {

@@ -23,10 +23,10 @@
 >
   <div on:mouseup={handleOnCopy}>
     <b>
-      polygon
+      polkadot 
     </b>
     <p>
-      address
+      0x618...0A0e
     </p>
   </div>
 </Tooltip>

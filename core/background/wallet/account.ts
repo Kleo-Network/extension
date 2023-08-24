@@ -13,7 +13,7 @@ export class KleoAccount {
       try {
         const privateKey = "0x" + new Buffer(randomBytes(32)).toString('hex');
         console.log("what kind of hell is this?",privateKey);
-      
+        await this.#core.guard.createArweaveWallet();
         await this.#core.guard.storeKey(privateKey);
         sendResponse({
           resolve: this.#core.state

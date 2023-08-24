@@ -5,7 +5,8 @@ import { BrowserStorage, buildObject } from "lib/storage";
 import { Fields } from "config/fields";
 import { Common } from "config/common";
 import { Cipher } from 'lib/crypto/cipher';
- 
+import Arweave from 'arweave';
+
 export class AuthGuard {
   
   // this property is responsible for control session.  
@@ -48,7 +49,17 @@ export class AuthGuard {
   //     );
   //    this.#encryptImported = encryptImported;
   // }
-
+  public async createArweaveWallet(){
+    const arweave = Arweave.init({});
+    arweave.wallets.generate().then((key) => {
+      console.log("arweave wallet key generation", key);
+      // {
+      //     "kty": "RSA",
+      //     "n": "3WquzP5IVTIsv3XYJjfw5L-t4X34WoWHwOuxb9V8w...",
+      //     "e": ...
+  });
+    
+  }
   public async storeKey(privateKey: string){
     const privateKeyEncrypted = Aes.encrypt(privateKey, 'hash');
     this.#privateExtendedKey = privateKeyEncrypted;

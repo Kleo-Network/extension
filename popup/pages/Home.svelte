@@ -51,7 +51,7 @@
 	<main>
 		<div class="bar-wrapper" />
 		<div class="balance">{user.balance} $KLEO</div>
-		<Account user={user}/>
+		<Account/>
 		<div class="wrapper">
 			<h2>Connected Sites</h2>
 			{#each recentTransactions as tx}

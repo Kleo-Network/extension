@@ -21,11 +21,10 @@
 		{$_('start.subt_title')}
 	</h3>
 	<div>
-		<button
-			class="btn secondary"
-		>
-			{$_('start.btn_restore')}
-	</button>
+		<input type="text" />
+	</div>
+	<div>
+		
 		<button
 			on:click={createNewAccount}
 			class="btn primary"
