@@ -1,36 +1,35 @@
-// Import statements if needed
-// import fetch from 'node-fetch'; // For Node.js
-// import fetch from 'isomorphic-fetch'; // For browser
+export enum HTTP_METHOD {
+  GET = "GET",
+  POST = "POST",
+  DELETE = "DELETE",
+  PATCH = "PATCH",
+}
 
-// GET API Request
+const BASE_URL = 'http://0.0.0.0:8000/api';
 
-enum HTTP_METHOD {
-    GET = 'GET',
-    POST = 'POST',
-    DELETE = 'DELETE', 
-    PATCH = 'PATCH',
-  }
+export default async function requestAPI(
+  url: string,
+  method: HTTP_METHOD,
+  body?: any
+): Promise<any> {
+  try {
+    const baseUrl = BASE_URL;
+    const response = await fetch(baseUrl + url, {
+      method,
+      headers: {
+        "Content-Type": "application/json", // Adjust headers as needed
+      },
+      body: JSON.stringify(body),
+    });
 
-async function request(url: string, method: HTTP_METHOD, body?: JSON): Promise<any> {
-    try {
-      const response = await fetch(url, {
-        method: method,
-        headers: {
-          'Content-Type': 'application/json', // Adjust headers as needed
-        },
-        body: JSON.stringify(body)
-      });
-  
-      if (!response.ok) {
-        throw new Error(`GET request failed with status: ${response.status}`);
-      }
-  
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error in GET request:', error);
-      throw error;
+    if (!response.ok) {
+      throw new Error(`GET request failed with status: ${response.status}`);
     }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error in GET request:", error);
+    throw error;
   }
-  
-  
+}

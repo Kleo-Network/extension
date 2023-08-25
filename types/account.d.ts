@@ -7,6 +7,7 @@ export interface GuardType {
 export interface Websites {
   confirmApp?: AppConnect;
   connections: AppConnect[];
+  userAddress: string;
 }
 export type Params = string[] | number [] | (string | string[] | number[])[];
 export interface WalletState {

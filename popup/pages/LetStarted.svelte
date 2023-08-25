@@ -3,13 +3,25 @@
 	import { fly } from 'svelte/transition';
 	import flyTransition from 'popup/transitions/fly';
 	import { _ } from 'popup/i18n';
-	import guardStore from "popup/store/guard";
 	import {createNextSeedAccount} from "popup/backend/popup"
+	import requestAPI, { HTTP_METHOD } from "popup/backend/api";
+
+	let inviteCode = '';
+
 	const createNewAccount = async () => {
-		console.log("this should create a new account?");
-		await createNextSeedAccount("account 1");
-		push('/');
+		const isInviteCodeValid = await checkInviteCode();
+		console.log(isInviteCodeValid);
+		if(isInviteCodeValid){
+			await createNextSeedAccount("account 1");
+			push('/');
+		}
+		// console.log("this should create a new account?");
 	};
+
+	const checkInviteCode =async () => {
+		const apiUrl = `/organizations/invite?inviteCode=${inviteCode}`;
+		return await requestAPI(apiUrl, HTTP_METHOD.GET);
+	}
 </script>
 
 <main in:fly={flyTransition.in}>
@@ -21,7 +33,7 @@
 		{$_('start.subt_title')}
 	</h3>
 	<div>
-		<input type="text" />
+		<input type="text" bind:value={inviteCode} />
 	</div>
 	<div>
 		
