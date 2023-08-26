@@ -6,6 +6,7 @@ export enum Fields {
   LOCK_TIME = "time_before_lock",
   CONNECT_DAPP = "connect",
   PRIVATE_KEY_ENCRYPTED = 'private-key-encrypted',
+  PUBLIC_KEY = 'public-key',
   THEME = "theme",
   TRANSACTIONS = "transactions",
   POPUP_ENABLED = "popup-enabled",

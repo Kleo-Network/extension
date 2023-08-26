@@ -5,7 +5,7 @@ import { Fields } from "config/fields";
 import { Aes } from "lib/crypto/aes";
 
 enum PermaStorage {
-    Arweave, 
+    // Arweave, 
     IPFS
 }
 export class storage {
@@ -13,7 +13,7 @@ export class storage {
      #lastEntry: JSON;
 
     constructor() {
-        this.#storage = PermaStorage.Arweave;
+        // this.#storage = PermaStorage.Arweave;
     }
     private async getPrivateKey(){
         const privateKeyEncrypted = await BrowserStorage.get(Fields.PRIVATE_KEY_ENCRYPTED) as string;

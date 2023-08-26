@@ -29,7 +29,7 @@ export default {
       routerGuard
     ]
   }),
-  '/detail': wrap({
+  '/detail?': wrap({
     component: Detail,
     conditions: [
       routerGuard

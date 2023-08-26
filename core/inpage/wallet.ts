@@ -39,7 +39,7 @@ export class Wallet {
   }
 
 
-  public async connect(): Promise<any> {
+  public async connect({orgId}): Promise<any> {
     const type = MTypeTab.CONNECT_APP;
     const recipient = MTypeTabContent.CONTENT;
     const uuid = uuidv4();
@@ -51,6 +51,7 @@ export class Wallet {
       domain,
       icon,
       uuid,
+      orgId
     };
 
     new ContentMessage({
