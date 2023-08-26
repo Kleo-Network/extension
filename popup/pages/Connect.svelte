@@ -24,7 +24,9 @@
 
   onMount(async () => {
     try {
-      const apiUrl = `/organizations?orgId=${$websiteStore.confirmApp["orgId"]}`;
+      //const apiUrl = `/organizations?orgId=${$websiteStore.confirmApp["orgId"]}`;
+      const apiUrl = `/organizations?orgId=2`;
+
       const orgDataRes = await requestAPI(apiUrl, HTTP_METHOD.GET);
       questions = orgDataRes[0].formData;
       orgData = orgDataRes[0];

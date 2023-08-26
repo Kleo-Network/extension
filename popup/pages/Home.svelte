@@ -43,7 +43,9 @@
           <div
             class="block"
             on:click={() =>
-              push(`/detail?orgId=${tx.organizationId}&userId=${user.address}`)}
+              //push(`/detail?orgId=${tx.organizationId}&userId=${user.address}`)}
+            push(`/detail?orgId=2&userId=${user.address}`)}
+
           >
             <p>Connected to <b class="url">{tx.domainUrl}</b></p>
 

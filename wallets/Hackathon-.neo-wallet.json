@@ -1,0 +1,29 @@
+{
+  "name": "Hackathon ",
+  "version": "1.0",
+  "scrypt": {
+    "n": 16384,
+    "r": 8,
+    "p": 8,
+    "size": 64
+  },
+  "accounts": [
+    {
+      "address": "NLbv1HSFUpTY3ifTvzss4QdfnGcoKvAR1u",
+      "label": "Default account",
+      "isDefault": true,
+      "lock": false,
+      "key": "6PYW8qJZEQwSrTV6aMeRL9CHwPpw2PnVk84RfCb8tPCWVUxiW3C49KcEvg",
+      "contract": {
+        "script": "DCECmnIBn1zLaPyXWsrZFIlzBuLyzDJfhzxiWVe51eH3CNRBVuezJw==",
+        "parameters": [
+          {
+            "name": "signature",
+            "type": "Signature"
+          }
+        ],
+        "deployed": false
+      }
+    }
+  ]
+}

@@ -13,7 +13,8 @@
   onMount(async () => {
       try {
         const searchParams = new URLSearchParams($querystring);
-        const orgId = searchParams.get("orgId");
+        //const orgId = searchParams.get("orgId");
+        const orgId = 2;
         const userId = searchParams.get("userId");
         const apiUrl = `/connections/user/${userId}/org/${orgId}`;
         detailData = await requestAPI(apiUrl, HTTP_METHOD.GET);
