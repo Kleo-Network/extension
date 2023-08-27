@@ -23,7 +23,7 @@
 >
   <div on:mouseup={handleOnCopy}>
     <b>
-      polkadot 
+      NEO 
     </b>
     <p>
       0x618...0A0e

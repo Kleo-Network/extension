@@ -24,8 +24,9 @@
 
   onMount(async () => {
     try {
-      //const apiUrl = `/organizations?orgId=${$websiteStore.confirmApp["orgId"]}`;
-      const apiUrl = `/organizations?orgId=2`;
+      console.log("the main website store", $websiteStore);
+      const apiUrl = `/organizations?orgId=${$websiteStore.confirmApp["orgId"]}`;
+      //const apiUrl = `/organizations?orgId=4`;
 
       const orgDataRes = await requestAPI(apiUrl, HTTP_METHOD.GET);
       questions = orgDataRes[0].formData;
@@ -41,7 +42,7 @@
       isLoading = true;
       const apiUrl = "/connections";
       await requestAPI(apiUrl, HTTP_METHOD.POST, {
-        userAddress: $websiteStore.confirmApp["userAddress"],
+        userAddress: $websiteStore.userAddress,
         orgId: orgData["id"],
         connectData: questions,
         domainUrl: orgData["domainUrl"],

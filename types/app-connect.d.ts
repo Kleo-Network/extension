@@ -3,4 +3,5 @@ export interface AppConnect {
     icon: string;
     title: string;
     uuid?: string;
+    orgId?: string;
   }

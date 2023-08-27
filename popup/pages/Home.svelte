@@ -6,11 +6,12 @@
   import Account from "../components/Account.svelte";
   import { onMount } from "svelte";
   import requestAPI, { HTTP_METHOD } from "popup/backend/api";
+  import websiteStore from "popup/store/connect";
 
   const user = {
     balance: "35",
     network: "polygon",
-    address: "0x01e92439cfe82aa2d75970954445308aa1febbe8",
+    address: "0x31c045c76e5adb0346789f418b05b2b139503ca6639390cd945307eddccd9c8243a876019c5ec6a42fbf7159a33b909ec9ec7aaea12917fb8c53a1086279703e",
   };
 
   let isLoading = true;
@@ -18,7 +19,7 @@
 
   onMount(async () => {
     try {
-      const apiUrl = `/connections/user?publicAddress=${user.address}`;
+      const apiUrl = `/connections/user?publicAddress=${$websiteStore.userAddress}`;
       recentTransactions = await requestAPI(apiUrl, HTTP_METHOD.GET);
     } catch (e) {
     } finally {
@@ -43,9 +44,7 @@
           <div
             class="block"
             on:click={() =>
-              //push(`/detail?orgId=${tx.organizationId}&userId=${user.address}`)}
-            push(`/detail?orgId=2&userId=${user.address}`)}
-
+              push(`/detail?orgId=${tx.organizationId}&userId=${$websiteStore.userAddress}`)}
           >
             <p>Connected to <b class="url">{tx.domainUrl}</b></p>
 
