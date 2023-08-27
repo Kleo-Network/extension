@@ -39,7 +39,7 @@
       isLoading = true;
       const apiUrl = "/connections";
       await requestAPI(apiUrl, HTTP_METHOD.POST, {
-        userAddress: $websiteStore.confirmApp["userAddress"],
+        userAddress: $websiteStore.userAddress,
         orgId: orgData["id"],
         connectData: questions,
         domainUrl: orgData["domainUrl"],
